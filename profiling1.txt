@@ -1,0 +1,361 @@
+
+DO $$
+DECLARE
+    start_time TIMESTAMP;
+    end_time TIMESTAMP;
+    duration1 INTERVAL;
+	duration2 INTERVAL;
+	duration3 INTERVAL;
+	r1 int;
+	r2 int;
+	r3 int;
+BEGIN
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+    start_time := clock_timestamp();
+    
+    with q1 as (
+    select _accession_key
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r1
+    from mgd.acc_accession acc
+    join q1
+    on acc._accession_key = q1._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration1 := end_time - start_time;
+	
+    ----------------------------------------------------------
+	
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+	start_time := clock_timestamp();
+    
+    with q2 as (
+    select _accession_key, _refs_key, _createdby_key, _modifiedby_key
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r2
+    from mgd.acc_accession acc
+    join q2
+    on acc._accession_key = q2._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration2 := end_time - start_time;
+	
+    ----------------------------------------------------------
+	
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+	start_time := clock_timestamp();
+    
+    with q3 as (
+    select _accession_key, _refs_key, _createdby_key, _modifiedby_key,
+		creation_date, modification_date
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r3
+    from mgd.acc_accession acc
+    join q3
+    on acc._accession_key = q3._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration3 := end_time - start_time;
+	
+    ----------------------------------------------------------
+
+    RAISE NOTICE 'Query result % time %', r1, duration1;
+	RAISE NOTICE 'Query result % time %', r2, duration2;
+	RAISE NOTICE 'Query result % time %', r3, duration3;
+	
+END $$;
+
+
+32.196836
+26.799917
+23.673738
+
+22.08887
+20.24331
+20.137333
+
+32.450399
+38.504536
+34.886932
+
+30.053821
+23.152757
+22.141072
+
+26.309098
+23.108203
+21.954799
+
+30.237209
+23.098815
+22.104597
+
+23.078849
+21.884726
+20.635991
+
+23.580082
+20.459172
+20.19297
+
+26.362981
+24.98433
+25.040282
+
+27.221567
+22.680488
+23.395103
+
+
+=========================================================================================== 1 2
+
+DO $$
+DECLARE
+    start_time TIMESTAMP;
+    end_time TIMESTAMP;
+    duration1 INTERVAL;
+	duration2 INTERVAL;
+	duration3 INTERVAL;
+	r1 int;
+	r2 int;
+	r3 int;
+BEGIN
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+    start_time := clock_timestamp();
+    
+    with q2 as (
+    select _accession_key, _refs_key, _createdby_key, _modifiedby_key
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r2
+    from mgd.acc_accession acc
+    join q2
+    on acc._accession_key = q2._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration2 := end_time - start_time;
+	
+    ----------------------------------------------------------
+	
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+	start_time := clock_timestamp();
+    
+    with q3 as (
+    select _accession_key, _refs_key, _createdby_key, _modifiedby_key,
+		creation_date, modification_date
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r3
+    from mgd.acc_accession acc
+    join q3
+    on acc._accession_key = q3._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration3 := end_time - start_time;
+	
+    ----------------------------------------------------------
+	
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+	start_time := clock_timestamp();
+    
+    with q1 as (
+    select _accession_key
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r1
+    from mgd.acc_accession acc
+    join q1
+    on acc._accession_key = q1._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration1 := end_time - start_time;
+	
+    ----------------------------------------------------------
+
+    RAISE NOTICE 'Query result % time %', r1, duration1;
+	RAISE NOTICE 'Query result % time %', r2, duration2;
+	RAISE NOTICE 'Query result % time %', r3, duration3;
+	
+END $$;
+
+24.615621
+27.423646
+25.09076
+
+24.389918
+31.297548
+26.285219
+
+34.752938
+31.445298
+29.796807
+
+22.890658
+24.628442
+23.538129
+
+22.538573
+31.026011
+24.676147
+
+20.83456
+22.470693
+20.522875
+
+25.571441
+24.388539
+22.549952
+
+27.306825
+24.785626
+21.588172
+
+19.988207
+22.448192
+20.06108
+
+20.25004
+22.459006
+20.333009
+
+
+============================================================================= 2 3
+
+DO $$
+DECLARE
+    start_time TIMESTAMP;
+    end_time TIMESTAMP;
+    duration1 INTERVAL;
+	duration2 INTERVAL;
+	duration3 INTERVAL;
+	r1 int;
+	r2 int;
+	r3 int;
+BEGIN
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+    start_time := clock_timestamp();
+    
+    with q3 as (
+    select _accession_key, _refs_key, _createdby_key, _modifiedby_key,
+				creation_date, modification_date
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r3
+    from mgd.acc_accession acc
+    join q3
+    on acc._accession_key = q3._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration3 := end_time - start_time;
+	
+    ----------------------------------------------------------
+	
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+	start_time := clock_timestamp();
+    
+    with q1 as (
+    select _accession_key
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r1
+    from mgd.acc_accession acc
+    join q1
+    on acc._accession_key = q1._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration1 := end_time - start_time;
+	
+    ----------------------------------------------------------
+	
+    PERFORM pg_advisory_unlock_all();
+    RESET ALL;
+	
+	start_time := clock_timestamp();
+    
+    with q2 as (
+    select _accession_key, _refs_key, _createdby_key, _modifiedby_key
+    from mgd.acc_accessionreference)
+
+    select count(*) 
+	into r2
+    from mgd.acc_accession acc
+    join q2
+    on acc._accession_key = q2._accession_key;
+ 
+    end_time := clock_timestamp();
+    duration2 := end_time - start_time;
+	
+    ----------------------------------------------------------
+
+    RAISE NOTICE 'Query result % time %', r1, duration1;
+	RAISE NOTICE 'Query result % time %', r2, duration2;
+	RAISE NOTICE 'Query result % time %', r3, duration3;
+	
+END $$;
+
+25.776975
+26.221316
+23.35775
+
+36.415366
+30.39593
+27.45738
+
+36.905693
+27.363795
+28.369637
+
+26.295552
+24.680871
+27.574666
+
+27.31156
+24.974906
+36.996083
+
+21.98902
+23.204331
+22.826447
+
+22.045887
+21.24216
+25.373617
+
+26.662475
+25.319065
+28.127265
+
+22.190933
+22.853495
+25.23151
+
+21.363952
+22.160144
+22.726759
